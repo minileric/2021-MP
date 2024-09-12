@@ -1,0 +1,18 @@
+# Рязанов Петр, дата рождения 16.07.2001
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+A=16
+graph = []
+zf = []#значение функции
+for x in range(101):
+    if ((A / 9 ) * x + math.sqrt(x**3)) != 0:
+        s = math.log( math.fabs((math.exp(math.cos(x)**A) * math.tan(x**2)) / ((A / 9 ) * x + math.sqrt(x**3))), 2 * x)
+        graph.append(s)
+    if x == 1 or x == 5 or x == 10 or x == 100:
+         s = math.log( math.fabs((math.exp(math.cos(x)**A) * math.tan(x**2)) / ((A / 9 ) * x + math.sqrt(x**3))), 2 * x)
+         zf.append(s)
+print("\n функция при x=1", zf[0], "\n функция при х=5", zf[1], "\n функция при х=10", zf[2], "\n функция при x=100" , zf[3])
+x = np.arange(0, 100, 1)
+plt.plot(x, graph)
+plt.show()

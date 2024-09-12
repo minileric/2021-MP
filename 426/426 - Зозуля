@@ -1,0 +1,21 @@
+Зозуля 30.05.1991
+import numpy as np
+import math
+A=6
+B=30
+C=1991+5*3
+func= lambda x: np.exp(A*x)+x**B+math.log(x**3,C)# функ
+a=0.001# приближение
+b=0.2
+c=1
+eps=10**(-12)#по условиям 
+i=0
+while(b-a>eps):
+    c=(a+b)/2 #середина 
+    if(func(b)*func(c)<0): #условия пересечения
+        print(a,"--",b)
+        a=c# перемещение левой границы на половину отрезка
+    else:
+        b=c  
+    i+=1
+print(func(a))

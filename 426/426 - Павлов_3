@@ -1,0 +1,22 @@
+import numpy as np
+
+##y'+ (2y+1)*ctg(x)=0 
+y = 1/(2*C * sin(x)**2) - 1/2 
+C = 2001+5**3 
+
+f = lambda x: 1 / (C*2*(np.sin(x)**2))-1/2  
+
+a = 0
+b = 100
+
+e = 1.0**e-12 
+
+c = (a+b)/2
+while abs(f(c)) > e:
+    if f(a)*f(c) < 0:
+        b = c
+    if f(b)*f(c) < 0:
+        a = c 
+    c = (a+b)/2
+
+print("x =",c , ", y = ",f(c))

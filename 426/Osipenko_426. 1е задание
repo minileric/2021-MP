@@ -1,0 +1,26 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+x = 1
+A = 10               #День рождения - 10 июля
+answer = []
+graf = []
+for x in range(101):
+    if ((A/9)*x+math.sqrt(x**3)) != 0:
+        y = math.log(2*x, math.fabs((math.exp(math.cos(x)**A)*math.tan(x**2))/((A/9)*x+math.sqrt(x**3))))
+        graf.append(y)
+    if x == 1 or x == 5 or x == 10 or x == 100:
+        answer.append(y)
+fig, ax = plt.subplots() 
+print("Значение ф-ции при х=1:")
+print("y =", answer[0])
+print("Значение ф-ции при х=5:")
+print("y =", answer[1])
+print("Значение ф-ции при х=10:")
+print("y =", answer[2])
+print("Значение ф-ции при х=100:")
+print("y =", answer[3])
+
+x = np.arange(0,100,1)
+plt.plot(x, graf)
+plt.show()

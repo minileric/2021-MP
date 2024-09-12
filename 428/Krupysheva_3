@@ -1,0 +1,48 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import sympy
+from math import factorial
+
+x=sympy.symbols('x')
+y=sympy.Function('y')(x)
+
+x0=0.5
+y0=1
+h=0.1
+yl=[] 
+XX=[x0] 
+YY=[] 
+
+def Sympy(f,XX,YY): 
+    f=sympy.Add(f)
+    f=f.subs({x:XX,y:YY})
+    return float(f)
+
+def taylor(y1,y2,x): #ряд Тейлора 
+    T = 1+h*y1/(factorial(1))*(x-0.5)+(h/2)*y2/(factorial(2))*(x-0.5)**2
+    return T
+
+def Idiff(func): #производная неявной функции 
+    f=sympy.idiff(func,y,x)
+    return f
+
+function=-x*(y**4+1)/(2*(x*y+y)) #1я производная
+val=Sympy(function,x0,y0)
+yl.append(val)
+func1=Idiff(function) #2я производная
+val=Sympy(func1,x0,y0)
+yl.append(val)
+y0=taylor(yl[0],yl[1],x0)
+YY.append(y0)
+
+while abs(x0)<2:
+    x0=x0+h 
+    XX.append(x0)
+    y0=taylor(yl[0],yl[1],x0)
+    YY.append(y0)
+    val=Sympy(function,x0,y0) 
+    yl[0]=val
+    val=Sympy(func1,x0,y0) 
+    yl[1]=val
+plt.plot(XX,YY)
+plt.grid()
